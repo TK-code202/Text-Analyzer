@@ -144,6 +144,10 @@ function removeFoulWords(text) {
       }, '');
       return sorterdOrder;
   }
+
+
+
+  
   // UI Logic
 
   $(document).ready(function(){
