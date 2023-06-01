@@ -32,7 +32,7 @@ function wordCounter(text) {
   return wordCount;
  }
 
- function findWordWithin(word, largerWord) {
+ function findWordWithinWord(word, largerWord) {
   const convertedWord = word.toLowerCase();
   const convertedLargerWord = largerWord.toLowerCase();
 
@@ -69,7 +69,7 @@ function removeFoulWords(text) {
 
   function boldPassage(word, text) {
     if (noInputtedWord(word, text)) {
-      return "";
+      return text;
     }
     let htmlString = "<p>";
     const wordsArray = removeFoulWords(text);
@@ -77,7 +77,7 @@ function removeFoulWords(text) {
     textArray.forEach(function(element, index) {
       if (element.toLowerCase().includes(word.toLowerCase())) {
         // htmlString = htmlString.concat("<b>" + element + "</b>");
-        htmlString = htmlString.concat(findWordWithin(word, element));
+        htmlString = htmlString.concat(findWordWithinWord(word, element));
       } else {
         htmlString = htmlString.concat(element);
       }
@@ -88,20 +88,20 @@ function removeFoulWords(text) {
     return htmlString + "</p>";
   }
 
-  
 
-  function removePunctuation(str) {
+  function removePunctuation(text) {
     const punctuationMarks = ['.', ',' , ';', ':', '!', '?', '-', '_', '"', '(', ')', '[', ']', '{', '}', '<', '>', "'"];
   
-    const characters = str.split('');
+    const characters = text.split('');
   
     const filteredCharacters = characters.filter(function(char) { return !punctuationMarks.includes(char)
      });
   
-    const result = filteredCharacters.join('');
+    const textResult = filteredCharacters.join('');
   
-    return result;
+    return textResult;
   }
+
   
   // Most Used Words
   function commonWords (text) {
@@ -138,7 +138,8 @@ function removeFoulWords(text) {
   
   function outputCommonWords (commonWordsList) {
 
-    const mostCommonWords = getMostCommonWords(commonWordsList, 3);
+    const mostUsedWords = sortCommonWords(commonWords(commonWordsList));
+    const mostCommonWords = getMostCommonWords(mostUsedWords, 3);
      const sorterdOrder = mostCommonWords.reduce(function(output, wordObj) {
         return output + '<p>' + wordObj[0] + ': ' + wordObj[1] + '</p>';
       }, '');
@@ -148,6 +149,7 @@ function removeFoulWords(text) {
 
 
   
+  
   // UI Logic
 
   $(document).ready(function(){
@@ -155,8 +157,7 @@ function removeFoulWords(text) {
       event.preventDefault();
       const passage = $("#text-passage").val();
       const word = $("#word").val();
-      const mostUsedWords = sortCommonWords(commonWords(passage));
-      const result = outputCommonWords (mostUsedWords);
+      const result = outputCommonWords(passage);
       const wordCount = wordCounter(passage);
       const occurrencesOfWord = numberOfOccurrencesInText(word, passage);
       $("#mostUsed").html(result);
