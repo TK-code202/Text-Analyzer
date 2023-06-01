@@ -4,6 +4,8 @@ function noInputtedWord(word, text) {
   return ((text.trim().length === 0) || (word.trim().length === 0));
  }
 
+ //Total Number of words
+
 function wordCounter(text) {
     if (text.trim().length === 0) {
       return 0;
@@ -18,6 +20,7 @@ function wordCounter(text) {
     return wordCount;
   }
   
+  // Slected Word Count
   function numberOfOccurrencesInText(word, text) {
   if (noInputtedWord(word, text)) {
   return 0;
