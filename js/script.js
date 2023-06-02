@@ -20,7 +20,7 @@ function wordCounter(text) {
     return wordCount;
   }
   
-  // Slected Word Count
+  // Selected Word Count
   function numberOfOccurrencesInText(word, text) {
   if (noInputtedWord(word, text)) {
   return 0;
