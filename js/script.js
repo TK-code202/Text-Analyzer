@@ -1,24 +1,31 @@
-// Business Logic
+// Utility Logic
 
-function noInputtedWord(word, text) {
-  return ((text.trim().length === 0) || (word.trim().length === 0));
- }
+function noInputtedWord() {
+  for (let i=0; i < arguments.length; i++) {
+    if (arguments[i].trim().length === 0) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// Business Logic
 
  //Total Number of words
 
-function wordCounter(text) {
-    if (text.trim().length === 0) {
-      return 0;
-    }
-    let wordCount = 0;
-    const wordArray = text.trim().split(" ");
-    wordArray.forEach(function(element) {
-      if (!Number(element)) {
-        wordCount++;
-      }
-    });
-    return wordCount;
+ function wordCounter(text) {
+  if (noInputtedWord(text)) {
+    return 0;
   }
+  let wordCount = 0;
+  const wordArray = text.split(" ");
+  wordArray.forEach(function(element) {
+    if (!Number(element)) {
+      wordCount++;
+    }
+  });
+  return wordCount;
+}
   
   // Selected Word Count
   function numberOfOccurrencesInText(word, text) {
@@ -72,7 +79,7 @@ function removeFoulWords(text) {
 
   function boldPassage(word, text) {
     if (noInputtedWord(word, text)) {
-      return text;
+      return removeFoulWords(text);
     }
     let htmlString = "<p>";
     const wordsArray = removeFoulWords(text);
@@ -93,7 +100,7 @@ function removeFoulWords(text) {
 
 
   function removePunctuation(text) {
-    const punctuationMarks = ['.', ',' , ';', ':', '!', '?', '-', '_', '"', '(', ')', '[', ']', '{', '}', '<', '>', "'"];
+    const punctuationMarks = ['.', ',' , ';', ':', '!', '?', '-', '_', '"', '(', ')', '[', ']', '{', '}', '<', '>', "'", "@", "#", "%"];
   
     const characters = text.split('');
   
@@ -111,7 +118,7 @@ function removeFoulWords(text) {
       if (text.trim().length === 0) {
         return 0;
       }
-      const cleaned = removePunctuation(text);
+      const cleaned = removePunctuation(removeFoulWords(text));
       const words = cleaned.toLowerCase().trim().split(" ");
       const occurences = words.reduce(function (allWords, word) {
     
