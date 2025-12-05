@@ -9,6 +9,28 @@ function noInputtedWord() {
   return false;
 }
 
+  // function spaceEliminator (text) {
+  //   const wordTray = text.split(" ");
+  //   wordTray.forEach(function(element, index) {
+  //     if(element === "") {
+  //       wordTray.splice(index, 1);
+  //     }
+  //   });
+  //   return wordTray.join(" ");
+  // }
+
+  function spaceEliminator (text) {
+    const wordTray = text.split(" ");
+    const newTray = wordTray.filter(function(element) {
+      return element !== ""
+  });
+    return newTray.join(" ");
+  }
+
+  // The aim of the spaceEliminator function is to remove the spaces created in the text as a result of the removePunctuation function. It also removes spaces in cases where the text includes multiple space characters.
+
+  // Update: a simpler approach is to use the regular expression: '/\s+/' as parameter in the split method. It takes care of all space characters even in the event of multiple occurences.
+
 // Business Logic
 
  //Total Number of words
@@ -18,7 +40,8 @@ function noInputtedWord() {
     return 0;
   }
   let wordCount = 0;
-  const wordArray = text.split(" ");
+  const wordArray = spaceEliminator(text).split(" ");
+  // const wordArray = text.split(" ");
   wordArray.forEach(function(element) {
     if (!Number(element)) {
       wordCount++;
@@ -47,10 +70,11 @@ function noInputtedWord() {
   const convertedLargerWord = largerWord.toLowerCase();
 
   let wordIndex = convertedLargerWord.indexOf(convertedWord);
-  
+  let wordPosition = 0;
+  // .indexOf returns the index of the first letter of a word contained in a larger word/string.
+  // if indexOf returns -1, it means the character is not contained in the string.
   if (wordIndex !== -1) {
     wordPosition = wordIndex ;
-
   } else {
     return -1;
   }
@@ -59,7 +83,7 @@ function noInputtedWord() {
 
   // return "<b>" + largerWord.slice(wordPosition, word.length)+ "</b>" + largerWord.slice(wordPosition + word.length) 
   // return largerWord.slice(0, wordPosition) + "<b>" + largerWord.slice(wordPosition) + "</b>" 
-  return convertedLargerWord.slice(0, wordPosition) + "<b>" + convertedLargerWord.slice(wordPosition, wordPosition + convertedWord.length)+ "</b>" + convertedLargerWord.slice(wordPosition + convertedWord.length)
+  return convertedLargerWord.slice(0, wordPosition) + "<b>" + convertedLargerWord.slice(wordPosition, wordPosition + convertedWord.length)+ "</b>" + convertedLargerWord.slice(wordPosition + convertedWord.length);
 
 
 }
@@ -79,7 +103,8 @@ function removeFoulWords(text) {
 
   function boldPassage(word, text) {
     if (noInputtedWord(word, text)) {
-      return removeFoulWords(text);
+      // return removeFoulWords(text);
+      return text;
     }
     let htmlString = "<p>";
     const wordsArray = removeFoulWords(text);
@@ -99,9 +124,9 @@ function removeFoulWords(text) {
   }
 
 
+
   function removePunctuation(text) {
-    const punctuationMarks = ['.', ',' , ';', ':', '!', '?', '-', '_', '"', '(', ')', '[', ']', '{', '}', '<', '>', "'", "@", "#", "%"];
-  
+    const punctuationMarks = ['.', ',', ';', ':', '!', '?', '-', '_', '"', '(', ')', '[', ']', '{', '}', '<', '>', "'", "@", "#", "%"];
     const characters = text.split('');
   
     const filteredCharacters = characters.filter(function(char) { return !punctuationMarks.includes(char)
@@ -109,7 +134,7 @@ function removeFoulWords(text) {
   
     const textResult = filteredCharacters.join('');
   
-    return textResult;
+    return spaceEliminator(textResult);
   }
 
   
@@ -133,6 +158,7 @@ function removeFoulWords(text) {
   
       return occurences;
     }
+
 
     
   function sortCommonWords (wordCounts) {

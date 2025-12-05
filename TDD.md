@@ -22,6 +22,12 @@ function wordCounter(text) {
   return wordCount;
 }
 
+ <!-- describe('word counter', () => { 
+  test('should return 1 if a passage has just one word', () => { 
+    const text = "hello"; 
+    expect(wordCounter(text)).toEqual(1); 
+  }); 
+}); -->
 
 Test: "It should return 0 for an empty string."
 Code: wordCounter("");
@@ -284,3 +290,7 @@ function boldPassage(word, text) {
   });
   return htmlString + "</p>";
 }
+
+
+
+<!-- Up until this point, we've mainly done one - off projects a quick website to demonstrate a concept or a little practice in the console or with JSFiddle. Now, though, we'll be transitioning to more - sustained projects that we'll work on over the course of - a - section or even, in some cases over multiple sections -->
