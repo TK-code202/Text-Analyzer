@@ -87,6 +87,7 @@ function noInputtedWord() {
 
 
 }
+
 function removeFoulWords(text) {
   const sentence = text.split(" ");
   sentence.forEach(function(element) {
@@ -103,8 +104,8 @@ function removeFoulWords(text) {
 
   function boldPassage(word, text) {
     if (noInputtedWord(word, text)) {
-      // return removeFoulWords(text);
-      return text;
+      return removeFoulWords(text);
+      // return text;
     }
     let htmlString = "<p>";
     const wordsArray = removeFoulWords(text);

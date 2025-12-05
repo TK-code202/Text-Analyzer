@@ -15,7 +15,9 @@
 
 ## Description
 
->_The application analyzes a passage of text inputted by the user by returning the attributes of the text like total number of words, most common words, number of occurences of a particular word, etc. A lot of the functions used to achieve this primarily make use of looping in various means._
+>The application analyzes a passage of text inputted by the user by returning the attributes of the text like total number of words, most common words, number of occurences of a particular word, etc. A lot of the functions used to achieve this primarily make use of looping in various means.
+
+>_For the purpose of this application, there are only four offensive words handled by the foul words functionality: "zoinks", "muppeteer", "biffaroni", and "loopdaloop". Real offensive words were deliberately not used for obvious reasons._
 
 ## Setup/Installation Requirements
 
