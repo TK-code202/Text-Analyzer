@@ -15,7 +15,7 @@
 
 ## Description
 
-_The application analyzes a passage of text inputted by the user by returning the attributes of the text like total number of words, most common words, number of occurences of a particular word, etc. A lot of the functions used to achieve this primarily makes use of looping in various means._
+>_The application analyzes a passage of text inputted by the user by returning the attributes of the text like total number of words, most common words, number of occurences of a particular word, etc. A lot of the functions used to achieve this primarily make use of looping in various means._
 
 ## Setup/Installation Requirements
 
